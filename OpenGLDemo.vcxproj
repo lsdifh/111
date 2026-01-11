@@ -42,6 +42,9 @@
     <ClCompile Include="src\Scene\SkyBox.cpp" />
     <ClCompile Include="src\utils.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\model\pot\source\texturekoupi.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

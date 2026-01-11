@@ -32,5 +32,5 @@ newmtl Material__145
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka tju.png
-	map_Kd tju.png
+	map_Ka hzau.png
+	map_Kd hzau.png

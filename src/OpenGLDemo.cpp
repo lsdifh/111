@@ -99,9 +99,10 @@ int main(void)
 	Model SDesk("res/Models/student-desk/student-desk.obj");
 	//Model SChair("res/Models/student-chair/student-chair.obj");
 	Model Workbench("res/Models/workbench/workbench.obj");
-
+	
 	Model Curtain("res/Models/curtain/curtain.obj");
-	Model PotPlant("res/Models/potplant/pot-plant.obj");
+	//Model PotPlant("res/Models/potplant/pot-plant.obj");
+	Model PotPlant("res/Models/pot1/pot1.obj");
 
 
 	// shaders
