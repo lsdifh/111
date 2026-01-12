@@ -96,7 +96,7 @@ int main(void)
 	Texture	DoorTexture("res/Textures/Door.jpg");
 
 	Model TDesk("res/Models/teacher-desk/teacher-desk.obj");
-	Model SDesk("res/Models/student-desk/student-desk.obj");
+	Model SDesk("res/Models/desk/desk.obj");
 	//Model SChair("res/Models/student-chair/student-chair.obj");
 	Model Workbench("res/Models/workbench/workbench.obj");
 	
@@ -182,6 +182,29 @@ int main(void)
 	Lights1.PointLightStat(4, false);
 	Lights1.PointLightStat(5, false);
 	//Lights1.PointLightStat(6, false);
+
+	//Instancing
+	ModelInstances SDeskInstances(5 * 5);
+	
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			glm::mat4 model = glm::mat4(1.0f);
+			float y = 0.0f;
+			float x = j * 10.0f;
+			float z = i * 12.0f;
+			model = glm::translate(model, glm::vec3(x, y, z));
+			model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+			SDeskInstances.AddInstanceModel(model);
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(x - 10.0f, y, z));
+			model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		}
+	}
+
+	SDeskInstances.SetUpInstancing(SDesk);
+	
 
 	ShadowMap Shadow1(SHADOWMAP_WIDTH, SHADOWMAP_HEIGHT, 20.0f, 200.0f);
 
@@ -357,6 +380,7 @@ int main(void)
 			Workbench.Draw(ShadowmapShader);
 			
 
+			//potplant
 			model = glm::mat4(1.0f);
 			model = glm::translate(model, glm::vec3(25.0f, 0.0f, 67.0f));
 			model = glm::scale(model, glm::vec3(2.00f));
@@ -364,12 +388,37 @@ int main(void)
 			ShadowmapShader.SetMat4("model", model);
 			PotPlant.Draw(ShadowmapShader);
 			
+			//pot
 			model = glm::mat4(1.0f);
 			model = glm::translate(model, glm::vec3(15.0f, 0.0f, 65.0f));
 			model = glm::scale(model, glm::vec3(2.00f));
 			ShadowmapShader.Bind();
 			ShadowmapShader.SetMat4("model", model);
 			Pot.Draw(ShadowmapShader);
+
+
+			//sdesk
+      for (int row = 0; row < 5; row++) {
+				for (int col = 0; col < 5; col++)
+				{
+					//Draw sdesk
+					model = glm::mat4(1.0f);
+					model = glm::translate(model, glm::vec3(col * 10.0f, 0.0f, row * 10.0f));
+					model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+					ShadowmapShader.Bind();
+					ShadowmapShader.SetMat4("model", model);
+					SDesk.Draw(ShadowmapShader);
+			
+					//Draw schair
+					model = glm::mat4(1.0f);
+					model = glm::translate(model, glm::vec3(col * 10.0f - 10.0f, 0.0f, row * 10.0f));
+					model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+					ShadowmapShader.Bind();
+					ShadowmapShader.SetMat4("model", model);
+				}
+			}
+
+
 
 			model = glm::mat4(1.0f);
 			//model = glm::translate(model, glm::vec3(18.5f, 5.75f, -19.5f));
@@ -558,6 +607,20 @@ int main(void)
 		ModelShader.SetMat4("model", model);
 		TDesk.Draw(ModelShader);
 
+		//sdesk
+		//Draw tdesk
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(55.0f, 0.0f, 25.0f));
+		model = glm::scale(model, glm::vec3(0.08f, 0.08f, 0.08f));	// it's a bit too big for our scene, so scale it down
+		ModelShader.Bind();
+		ModelShader.SetMat4("model", model);
+		TDesk.Draw(ModelShader);
+
+
+		InstanceShader.Bind();
+		SDeskInstances.Draw(SDesk, InstanceShader);	
+		InstanceShader.Unbind();
+
 
 		//
 // ================= Workbench =================	
@@ -570,6 +633,7 @@ int main(void)
 		ModelShader.SetMat4("model", model);
 		Workbench.Draw(ModelShader);
 
+		//potplant
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(25.0f, 0.0f, 67.0f));
 		model = glm::scale(model, glm::vec3(2.00f));
@@ -577,6 +641,7 @@ int main(void)
 		ModelShader.SetMat4("model", model);
 		PotPlant.Draw(ModelShader);
 
+		//pot
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(15.0f, 0.0f, 65.0f));
 		model = glm::scale(model, glm::vec3(2.00f));
@@ -584,6 +649,7 @@ int main(void)
 		ModelShader.SetMat4("model", model);
 		Pot.Draw(ModelShader);
 
+		//curtain
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(18.5f, 5.5f, -19.5f));
 		//Width Scale to 0.09, height scaled to 0.05, thickness scaled to 0.05
