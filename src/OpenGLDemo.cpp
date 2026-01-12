@@ -102,7 +102,8 @@ int main(void)
 	
 	Model Curtain("res/Models/curtain/curtain.obj");
 	//Model PotPlant("res/Models/potplant/pot-plant.obj");
-	Model PotPlant("res/Models/pot1/pot1.obj");
+	Model PotPlant("res/Models/eb_house_plant_03/eb_house_plant_03.obj");
+	Model Pot("res/Models/pot/pot.obj");
 
 
 	// shaders
@@ -347,7 +348,7 @@ int main(void)
 			//
 			// ================= Workbench (Shadow Pass) =================
 			model = glm::mat4(1.0f);
-			model = glm::translate(model, glm::vec3(40.0f, 0.0f, 50.0f));
+			model = glm::translate(model, glm::vec3(40.0f, 0.0f, 65.0f));
 			model = glm::rotate(model, glm::radians(-90.0f),glm::vec3(1.0f, 0.0f, 0.0f));
 			model = glm::rotate(model, glm::radians(180.0f),glm::vec3(0.0f, 0.0f, 1.0f));
 			model = glm::scale(model, glm::vec3(0.10f));
@@ -357,12 +358,18 @@ int main(void)
 			
 
 			model = glm::mat4(1.0f);
-			model = glm::translate(model, glm::vec3(25.0f, 0.0f, 65.0f));
+			model = glm::translate(model, glm::vec3(25.0f, 0.0f, 67.0f));
 			model = glm::scale(model, glm::vec3(2.00f));
 			ShadowmapShader.Bind();
 			ShadowmapShader.SetMat4("model", model);
 			PotPlant.Draw(ShadowmapShader);
 			
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(15.0f, 0.0f, 65.0f));
+			model = glm::scale(model, glm::vec3(2.00f));
+			ShadowmapShader.Bind();
+			ShadowmapShader.SetMat4("model", model);
+			Pot.Draw(ShadowmapShader);
 
 			model = glm::mat4(1.0f);
 			//model = glm::translate(model, glm::vec3(18.5f, 5.75f, -19.5f));
@@ -555,7 +562,7 @@ int main(void)
 		//
 // ================= Workbench =================	
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(40.0f, 0.0f, 50.0f));
+		model = glm::translate(model, glm::vec3(40.0f, 0.0f, 65.0f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::scale(model, glm::vec3(0.10f));
@@ -564,11 +571,18 @@ int main(void)
 		Workbench.Draw(ModelShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(25.0f, 0.0f, 65.0f));
+		model = glm::translate(model, glm::vec3(25.0f, 0.0f, 67.0f));
 		model = glm::scale(model, glm::vec3(2.00f));
 		ModelShader.Bind();
 		ModelShader.SetMat4("model", model);
 		PotPlant.Draw(ModelShader);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(15.0f, 0.0f, 65.0f));
+		model = glm::scale(model, glm::vec3(2.00f));
+		ModelShader.Bind();
+		ModelShader.SetMat4("model", model);
+		Pot.Draw(ModelShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(18.5f, 5.5f, -19.5f));
