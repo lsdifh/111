@@ -129,13 +129,13 @@ int main(void)
 	Shader ShadowmapShader("res/Shaders/ShadowMap.sdc");
 	Shader InstancingShadowmapShader("res/Shaders/InstancingShadowMap.sdc");
 	Shader CurtainShadowmapShader("res/Shaders/CurtainShadowMap.sdc");
-	Shader CherryShader("res/Shaders/cherry_blossom.sdc");
+	Shader SnowShader("res/Shaders/SnowFlake.sdc");
 
 
 
 	Shader DebugDepthShader("res/Shaders/DebugDepthQuad.sdc");
 
-	ParticleSystem p(CherryShader, "res/Textures/flower.jpg");
+	ParticleSystem p(SnowShader, "res/Textures/flower.jpg");
 
 
 	ModelShader.Bind();
@@ -493,10 +493,10 @@ int main(void)
 		WallShader.SetMat4("lightSpaceMatrix", lightSpaceMatrix);
 
 
-		CherryShader.Bind();
-		CherryShader.SetMat4("view", view);
-		CherryShader.SetMat4("projection", projection);
-		CherryShader.SetVec3("skyColor", glm::vec3(1.0, 1.0, 1.0));
+		SnowShader.Bind();
+		SnowShader.SetMat4("view", view);
+		SnowShader.SetMat4("projection", projection);
+		SnowShader.SetVec3("skyColor", glm::vec3(1.0, 1.0, 1.0));
 
 
 		GLCALL(glActiveTexture(GL_TEXTURE8));
