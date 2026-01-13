@@ -156,13 +156,13 @@ int main(void)
 
 	PointLight LightTemplate(0,
 		glm::vec3(0.0f, 0.0f, 0.0f), 			//Position
-		glm::vec3(1.0f, 1.0f, 1.0f), 		//LightColor
-		0.3f, 0.2f, 0.2f,  					//A,D,S ratio
+		glm::vec3(1.0f, 0.9f, 0.8f), 		//LightColor
+		0.15f, 0.12f, 0.1f,  					//A,D,S ratio
 		0.4f / 200, 1.0f / 200, 0.05f / 200);	//attenuation param
 	PointLight Outside(0,
 		glm::vec3(0.0f, 0.0f, 0.0f), 			//Position
 		glm::vec3(255.0f / 255, 200.0f / 255, 150.0f / 255), 		//LightColor
-		0.5f, 0.5f, 0.3f,  					//A,D,S ratio
+		0.45f, 0.45f, 0.25f,  					//A,D,S ratio
 		0.2f / 200, 0.8f / 200, 0.0f / 200);	//attenuation param
 
 
